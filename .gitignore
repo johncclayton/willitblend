@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/GreeterClient/bin/Debug/netcoreapp3.1
+/.vs/ServerSide/DesignTimeBuild/.dtbcache.v2
+/GreeterClient/obj
+/worker-service/bin/Debug/netcoreapp3.1
+/worker-service/obj/Debug/netcoreapp3.1
+/worker-service/obj
+/BlendingService/bin/Debug/netcoreapp3.1
+/BlendingService/obj
