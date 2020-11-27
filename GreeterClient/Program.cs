@@ -18,11 +18,13 @@ namespace GreeterClient
             httpHandler.ServerCertificateCustomValidationCallback =
                 HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+
             // on macOS, we expect utter failure when using HTTP/2 w/TLS.
             // Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
             // look here: https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot?view=aspnetcore-5.0#call-a-grpc-service-with-an-untrustedinvalid-certificate
 
-            using var channel = GrpcChannel.ForAddress("https://localhost:5001", 
+            using var channel = GrpcChannel.ForAddress("http://localhost:5000", 
                 new GrpcChannelOptions { HttpHandler = httpHandler } );
             var client = new Greeter.GreeterClient(channel);
             var reply = await client.BlendItForMeAsync(new HelloRequest { Name = "Stupid" });

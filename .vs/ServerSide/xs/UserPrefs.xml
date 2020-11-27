@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{D074AAFC-A5BC-4539-9CD7-B4BDC5223350}|Default">
+  <MonoDevelop.Ide.ItemProperties.BlendingService PreferredExecutionTarget="/Applications/Microsoft Edge.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="GreeterClient/Program.cs">
+    <Files>
+      <File FileName="GreeterClient/Protos/greet.proto" Line="1" Column="1" />
+      <File FileName="BlendingService/Program.cs" Line="34" Column="48" />
+      <File FileName="GreeterClient/Program.cs" Line="21" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="ServerSide" expanded="True">
+            <Node name="BlendingService" expanded="True" />
+            <Node name="GreeterClient" expanded="True">
+              <Node name="ConnectedServicesFolder" expanded="True" />
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Program.cs" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.worker-service PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

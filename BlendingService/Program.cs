@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,20 @@ namespace BlendingService
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    //webBuilder.ConfigureKestrel(options => {
-                    //    options.ListenLocalhost(5000, o => o.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
-                    //});
+                    webBuilder.ConfigureKestrel(options => {
+                        options.ListenLocalhost(5000, o => o.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
+                    });
+
                     webBuilder.UseStartup<Startup>();
+                    //webBuilder.UseStartup<Startup>().ConfigureKestrel(options =>
+                    //{
+                    //    options.Limits.MinRequestBodyDataRate = null;
+                    //    options.ListenAnyIP(5000,
+                    //        listenOptions => { listenOptions.Protocols = HttpProtocols.Http1; });
+
+                    //    options.ListenAnyIP(5001,
+                    //        listenOptions => { listenOptions.Protocols = HttpProtocols.Http2; });
+                    //});
                 });
     }
 }
