@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -10,3 +10,5 @@
 /worker-service/obj
 /BlendingService/bin/Debug/netcoreapp3.1
 /BlendingService/obj
+mac/BlendFace2/BlendFace2/bin/Debug
+mac/BlendFace2/BlendFace2/obj
