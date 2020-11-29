@@ -9,21 +9,23 @@ namespace GreeterClient
     {
         static async Task Main(string[] args)
         {
-            // reference when certs come knocking on your validated door
+            // reference when certs come knocking to validate your door (and find 'there is no door')
             // https://docs.microsoft.com/en-us/aspnet/core/security/enforcing-ssl?view=aspnetcore-5.0#trust-the-aspnet-core-https-development-certificate-on-windows-and-macos
 
-            // OR; just ignore the darn cert validation error
+            // OR; just ignore the darn cert validation error by allowing untrusted certs
             var httpHandler = new HttpClientHandler();
+
             // Return `true` to allow certificates that are untrusted/invalid
             httpHandler.ServerCertificateCustomValidationCallback =
                 HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
 
             AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
 
-            // on macOS, we expect utter failure when using HTTP/2 w/TLS.
+            // on macOS, we expect utter failure when using HTTP/2 w/TLS, you'll get: 
             // Unable to bind to https://localhost:5001 on the IPv4 loopback interface: 'HTTP/2 over TLS is not supported on macOS due to missing ALPN support.'.
             // look here: https://docs.microsoft.com/en-us/aspnet/core/grpc/troubleshoot?view=aspnetcore-5.0#call-a-grpc-service-with-an-untrustedinvalid-certificate
-
+            // 
+            // so: we turn to plain 'ol HTTP without anything
             using var channel = GrpcChannel.ForAddress("http://localhost:5000", 
                 new GrpcChannelOptions { HttpHandler = httpHandler } );
             var client = new Greeter.GreeterClient(channel);

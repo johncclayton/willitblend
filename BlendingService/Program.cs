@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using UnwindService;
 
 namespace BlendingService
 {
@@ -20,10 +22,15 @@ namespace BlendingService
         // For instructions on how to configure Kestrel and gRPC clients on macOS, visit https://go.microsoft.com/fwlink/?linkid=2099682
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .UseWindowsService()
+                .ConfigureServices((hostContext, services) =>
+                {
+                    services.AddHostedService<Worker>();
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.ConfigureKestrel(options => {
-                        options.ListenLocalhost(5000, o => o.Protocols = Microsoft.AspNetCore.Server.Kestrel.Core.HttpProtocols.Http2);
+                        options.ListenLocalhost(5000, o => o.Protocols = HttpProtocols.Http2);
                     });
 
                     webBuilder.UseStartup<Startup>();
